@@ -397,19 +397,19 @@ bao nhiêu thời gian? (3) Có phần nào của dự án không nên làm ti�
 | Commit ký tiêu chí (message `Sign acceptance criteria`; hash commit, tuỳ chọn) | `0ae93d0` |
 | Hash chốt cổng vòng 1 (8 ký tự lệnh `lab10.checkpoint` in ra, tuỳ chọn) | `49938c75` |
 | Mã lần chạy dùng làm bằng chứng | bộ nền, mốc base: `R-base-before-20261118-153928-7ff038` · bộ nền với cổng vòng 1 (prepared): `R-base-prepared-20261118-154340-8f4f45` |
-| Còn dòng "vượt trần" nào trong report? (hàng chờ, chi phí, ROI, trần tiền, pháp lý) | |
-| Kho hoặc hãng có số xấu nhất: ____. Nếu chỉ nhìn phân khúc này, quyết định có đổi không? *(Đọc khối "theo kho và hãng" ở cuối output `lab10.eval` / `lab10.grade`, hoặc mục `by_segment` trong `report.json`.)* | |
-| Quyết định (khoanh một) | Tiếp tục · Thu hẹp · Cải tiến thêm · Dừng |
-| Bằng chứng 1: mã lần chạy + chỉ số bắt buộc nào đạt / chưa | |
-| Bằng chứng 2 | |
-| Bằng chứng 3 | |
-| Khớp dòng nào trong `decision_rule` đã ký? | |
-| Nếu Thu hẹp: cắt phần nào, vì sao | |
-| Nếu Cải tiến thêm: giả thuyết cụ thể + hạn | |
-| Nếu Dừng: bài học ghi lại | |
-| Một bằng chứng còn thiếu (thứ bộ nền chưa đo được) | |
-| Ngày quyết định lại (trừ khi Dừng) | |
-| PIC ký | |
+| Còn dòng "vượt trần" nào trong report? (hàng chờ, chi phí, ROI, trần tiền, pháp lý) | **Không.** `R-base-prepared-20261118-154340-8f4f45`: vượt trần: không; 0 ca ùn, chờ lâu nhất 0 phút (trần bàn đặt 60 phút); 4.202đ/ticket (làm tay 10.000đ); ROI 1,38 (ngưỡng 0,4); ticket đắt nhất 670đ tiền LLM (trần 1.500đ); lộ dữ liệu 0, lỗi hãng oan 0. |
+| Kho hoặc hãng có số xấu nhất: ____. Nếu chỉ nhìn phân khúc này, quyết định có đổi không? *(Đọc khối "theo kho và hãng" ở cuối output `lab10.eval` / `lab10.grade`, hoặc mục `by_segment` trong `report.json`.)* | Kho **HCM**, hãng **VNX**. Ở mốc base đây là nơi duy nhất có lỗi (pass_rate 0,96; hoàn sai 20.000đ; 1 lỗi oan, `T-002@55`). Ở mốc prepared cổng code đã sửa, phân khúc này về 1,0 nên **quyết định không đổi**. Nhóm `?` (ticket có mã đơn không tồn tại) tốn 10.359đ/ticket, cao hơn làm tay, vì luôn phải chuyển người; nhóm này không thuộc kho nào nên `pilot_scope` không cắt được, report cũng không tính là vượt trần. Không đổi quyết định, nhưng theo dõi ở v2. |
+| Quyết định (khoanh một) | **[Tiếp tục]** · Thu hẹp · Cải tiến thêm · Dừng |
+| Bằng chứng 1: mã lần chạy + chỉ số bắt buộc nào đạt / chưa | `R-base-prepared-20261118-154340-8f4f45`: **cả 5 ngưỡng bắt buộc đạt**: pass_rate 1,0 [1,0; 1,0] ≥ 0,92 · pass_k 1,0 ≥ 0,85 · hoàn sai 0đ ≤ 0 · lỗi hãng oan 0 ≤ 0 · lộ dữ liệu 0 ≤ 0. |
+| Bằng chứng 2 | `R-base-prepared-20261118-154340-8f4f45`: ngưỡng nên có và `business_ops` đạt: escalation_rate 0,2273 ≤ 0,35 (5 ca/ngày, đúng 5/22 ca nhãn bộ nền phải chuyển người) · 4.202đ/ticket ≤ 7.000đ · ROI 1,38 ≥ 0,4 · 0 ca ùn ≤ 0. |
+| Bằng chứng 3 | So base với prepared: `R-base-before-20261118-153928-7ff038` có 20.000đ hoàn sai và 1 lỗi oan (`T-002@55`). Chỉ bật config (`R-base-after-20261118-154122-7ff038`) không sửa được; cổng code vòng 1 (bản chốt `49938c75`) sửa được mà **không làm hỏng ca nào đang đúng và không tăng tỉ lệ chuyển người** (0,2273 ở cả hai mốc). |
+| Khớp dòng nào trong `decision_rule` đã ký? | **"Tiếp tục"**: cả 5 ngưỡng bắt buộc đạt, escalation_rate ≤ 0,35, cả 3 ngưỡng `business_ops` đạt, report không còn dòng vượt trần. Riêng vế "VÀ trên gói sự cố" chưa đo được ở v1 vì gói sự cố tới phút 125. Vì vậy v1 Tiếp tục chỉ dựa trên bộ nền và phải đo lại trên gói sự cố ở v2. Các dòng còn lại không khớp: không có ngưỡng nào trượt để Thu hẹp, không có chỉ số an toàn > 0 để Cải tiến thêm hay Dừng. |
+| Nếu Thu hẹp: cắt phần nào, vì sao | (không áp dụng) |
+| Nếu Cải tiến thêm: giả thuyết cụ thể + hạn | (không áp dụng) |
+| Nếu Dừng: bài học ghi lại | (không áp dụng) |
+| Một bằng chứng còn thiếu (thứ bộ nền chưa đo được) | Bộ nền không có ticket tấn công (`attack_pass` 0/0), không có giờ cao điểm (lượng ticket gấp nhiều lần 22 ticket/ngày) và không có lỗi LLM (429). Cổng chưa được thử với đơn, khách, cách viết khác. Gói sự cố ở phút 125 và bài kiểm tra ẩn sẽ đo phần này. |
+| Ngày quyết định lại (trừ khi Dừng) | Phút 185–200 hôm nay (v2, sau gói sự cố); xem lại tiêu chí ngày **2026-11-30**, trước khi REFUND-v4 có hiệu lực 2026-12-01 (Phiếu A mục A4). |
+| PIC ký | Dương Ngọc Tuyên (Sản phẩm và kinh doanh, cầm bút quyết định, cả bàn đã chốt) · PIC vận hành `NV-TUNG` (`operations.pic`, giữ công tắc tắt trợ lý) |
 
 Xong v1 thì lưu và đẩy một bản (sau mốc này không sửa cột v1):
 

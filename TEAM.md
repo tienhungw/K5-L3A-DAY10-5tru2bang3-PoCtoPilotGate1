@@ -62,15 +62,26 @@ Sản phẩm và kinh doanh, người ký Bản tiêu chí. Câu 1.1, 1.6, 2.3, 
 
 ### Đóng góp cụ thể
 
-...
+- Câu 1.6, Bản tiêu chí (`config/acceptance_criteria.json`): 5 ngưỡng bắt buộc (`pass_rate_min` 0,92 · `pass_k_min` 0,85 · ba chỉ số an toàn = 0), `escalation_rate_max` 0,35, `business_ops` (7.000đ/ticket · ROI 0,4 · 0 ca ùn), `stop_condition` và 4 dòng `decision_rule` không chồng nhau. Mỗi ngưỡng có lý do từ `data/world.json` và nhãn bộ nền (5/22 ticket vốn phải chuyển người; tổng hoàn đúng 683.000đ/ngày).
+- Câu 1.6 trên Phiếu A mục A4: câu "Nếu … thì chúng tôi sẽ …" cho từng chỉ số (2 phiên bản cho `pass_rate_min`), hai câu ranh giới đầu ra, bốn câu soát, ngày xem lại 2026-11-30 (trước REFUND-v4).
+- Câu 1.1 (Phiếu A mục A1) và ghi kết luận câu 1.5 của cả bàn: chọn (b) (Phiếu A mục A3).
+- Câu 2.3 (Phiếu B mục B3): bản đồ dữ liệu và ví dụ drift REFUND-v3 → REFUND-v4 ngày 2026-12-01 (cờ `index_active` không tự đổi theo ngày hiệu lực).
+- Câu 2.9 (Phiếu B mục B7.4): mục `business` của `config/operating_gates.json`: trần hoàn ngày 1.800.000đ, ngân sách 1.500đ/ticket, phạm vi `all`, ROI 0,4, mỗi số một câu lý do.
+- Quyết định Gate 1 v1 (Phiếu B mục B8): **Tiếp tục**, khớp dòng "Tiếp tục" của `decision_rule` trên bộ nền (5/5 ngưỡng bắt buộc, `business_ops` đạt, không vượt trần); ghi rõ vế "gói sự cố" để v2 đo lại.
+- Dùng AI: Claude Code hỗ trợ đọc đề và code của lab, tính tổng tiền hoàn từ nhãn bộ nền, soạn nháp các câu trên và cột v1 ở B8. Mọi ngưỡng và con số do tôi duyệt và chịu trách nhiệm giải thích.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `cc8abc8` (nhánh `tuyen`): bản nháp tiêu chí, mục `business`, Phiếu A (câu 1.1, 1.5, A4), Phiếu B (B3, B7.4).
+- Commit `16c66a5` (nhánh `tuyen`): bản cuối tiêu chí, sửa `decision_rule` (Thu hẹp thêm `escalation_rate` và "report còn dòng vượt trần"; Dừng: "cao hơn mức làm tay 10.000 đ").
+- Commit `0ae93d0` `Sign acceptance criteria`: Bản tiêu chí của tôi được ký nguyên văn (Hưng chạy lệnh ký trên máy đo).
+- Quyết định v1 (Phiếu B mục B8) dựa trên `R-base-before-20261118-153928-7ff038` (base) và `R-base-prepared-20261118-154340-8f4f45` (prepared, bản chốt `49938c75`).
+- Quyết định v2 (Phiếu C mục C12) và câu 3.2: bổ sung sau khi nhận thẻ sự cố.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- Học được: ngưỡng phải viết và ký trước khi xem số, và mỗi ngưỡng cần một hành động "thì chúng tôi sẽ …"; `decision_rule` phải phủ hết mọi trường hợp report có thể ra, nếu không sẽ có kết quả không khớp dòng nào.
+- Còn chưa chắc: ngưỡng chi phí 7.000đ/ticket và ROI 0,4 mới ước tính tay từ `ops_facts` (khoảng 4.700đ/ticket); chưa biết số base thật có sát không.
 
 ## DuongMinhTan-2A202603464
 
