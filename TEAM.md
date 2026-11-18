@@ -72,11 +72,18 @@ Vận hành và pháp lý. Câu 1.2, 1.4, 2.4, 2.10, 3.1 (phần riêng theo th�
 
 ### Đóng góp cụ thể
 
-...
+- Câu 1.2: mục tiêu nhìn từ chị Oanh (kế toán đối soát) và chị Hạnh (trưởng ca CSKH) (Phiếu A mục A1).
+- Câu 1.4: telemetry production "tỉ lệ lỗi hãng bị khiếu nại" theo từng hãng, cửa sổ 7 ngày, ngưỡng báo động và điểm mù (Phiếu A mục A2, cột Telemetry production).
+- Câu 2.4: HAZOP vòng 1 trên `notify_carrier` (5 dòng kỹ thuật, trong đó nhánh chưa thấy trên trace là đơn nhiều kiện lấy hãng của `parcels[0]`; 4 dòng ngoài kỹ thuật) (Phiếu B mục B4); checklist 9 nhóm việc lần 1, mỗi dòng một PIC (B5).
+- Câu 2.10: điền `config/operating_gates.json` mục `operations` (PIC `NV-TUNG`, người duyệt `NV-HANH`, chờ tối đa 60 phút, 4 điều kiện dừng, kênh báo tin) và `legal` (chặn `recipient_contact`, `customer_note` khi gửi hãng; ghi lỗi hãng phải có nguyên nhân trong tracking); runbook phần 1–3 (B7.5) và Giờ cao điểm (B7.6).
+- Đối chiếu runbook và điều kiện dừng với số của Bản tiêu chí (trần 1.800.000đ/ngày, `queue_stuck_max` = 0, chi phí 7.000đ/ticket) để các con số khớp nhau.
+- Dùng AI: Claude Code hỗ trợ đọc đề, phiếu và code của lab, soạn nháp câu 1.2, 1.4, 2.4, 2.10, đối chiếu số với nhánh của Tuyên và thao tác Git.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `372b3f7`: câu 1.2, 1.4, 2.4, 2.10 và mục `operations`, `legal`.
+- Commit `0bc8b2e`: runbook và điều kiện dừng khớp số của Bản tiêu chí.
+- Mã lần chạy (`runs/<mã>`): bổ sung sau khi ký tiêu chí và chạy đánh giá.
 
 ### Exit ticket
 
