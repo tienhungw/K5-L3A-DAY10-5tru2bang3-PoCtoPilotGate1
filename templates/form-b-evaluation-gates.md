@@ -255,8 +255,8 @@ Bốn lăng kính (bắt buộc đủ cả bốn; dự án AI hay chết ở ba 
 |---|---|---|---|
 | | Kỹ thuật | | |
 | | Kinh doanh | | |
-| | Con người và vận hành | | |
-| | Pháp lý | | |
+| (Tân) Ngày sale tháng thứ hai, số ca trợ lý chuyển sang tăng gấp ba trong vài giờ. Chỉ có 1 người trực, duyệt 6 ca/giờ. Nhiều ca chờ quá 60 phút, khách gọi tổng đài phàn nàn. Chị Hạnh quá tải nên duyệt cho qua mà không đọc kỹ, và một khoản hoàn sai lọt qua. Anh Tùng phải tắt trợ lý. | Con người và vận hành | Có. `R-base-prepared-20261118-154340-8f4f45`: 5 ca/ngày vào hàng chờ, 1 người trực, 0 ca ùn. Ngày thường ổn, nhưng `ops_facts` cho thấy 1 người chỉ có 6 ca/giờ, nên đợt dồn trên 6 ca/giờ sẽ ùn (guide Phụ lục D) | **→ Cổng hôm nay (config):** `operations.max_queue_wait_minutes` = 60, `operations.stop_conditions` (có 1 ca ùn thì gọi thêm người, ùn lặp lại thì thu hẹp `pilot_scope`), runbook Giờ cao điểm B7.6 (ngày sale tăng lên 3 người). Phần còn lại (nhân viên duyệt cho qua khi quá tải) → Risk register |
+| (Tân) Một khách đặt quà, đơn trễ. Trợ lý gửi tên và số điện thoại người nhận quà cùng nguyên văn chữ khách gõ sang hãng vận chuyển. Tài xế gọi thẳng cho người nhận, người nhận khiếu nại LogiX làm lộ dữ liệu cá nhân, pháp chế yêu cầu dừng pilot. | Pháp lý | Có. Code `lab10/agent.py` dòng 200–205: đơn `is_gift` thì thêm `recipient_contact` (tên, SĐT) vào payload, và payload luôn có `customer_note`. Bản phát để `legal.pii_fields_blocked_to_third_party` = `[]` | **→ Cổng hôm nay (config + code):** `legal.pii_fields_blocked_to_third_party` = `["recipient_contact", "customer_note"]`; Hưng thêm `_notice_gate` trong `write_gate` khi `tool == "notify_carrier"` (B7.1 dòng 3). `R-base-prepared-20261118-154340-8f4f45`: lộ dữ liệu 0 |
 | | | | |
 
 ---
