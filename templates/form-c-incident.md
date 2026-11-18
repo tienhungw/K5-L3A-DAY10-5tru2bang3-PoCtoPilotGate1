@@ -323,6 +323,7 @@ python3 -m lab10.grade --incident Sx
 | [1] | Agent tự chọn mã phê duyệt không hợp lệ | `_refund_gate`, `_valid_approval`, `_approval_problems` trong `write_gate` khi `tool == "issue_refund"` (đã có từ vòng 1; vòng 2 thêm `customer_id` và lý do bác) | chặn | NGĂN việc ghi sổ bằng mã sai với dữ liệu `approvals` hiện có, vì lệnh ghi không chạy khi thiếu một điều kiện. Không ngăn được nếu chính bảng `approvals` sai | `R-S8-after-20261118-163532-66297e` |
 | [2] | Không có trần hoàn theo từng khách | Nhánh trần khách trong `_refund_gate`, đọc `ops_limits.max_auto_refund_per_customer_per_day_vnd` (đã có từ vòng 1) | giới hạn thiệt hại | NGĂN hoàn tự động vượt 300.000đ/khách/ngày trên một sổ cái. Không thấy một người dùng nhiều tài khoản | `R-S8-after-20261118-163532-66297e` |
 | [3] | Nhân viên không tin vì không thấy lý do và chưa có quy trình kiểm mẫu | `operations.decision_note` = `true`; `operations.review_sampling_pct` = 10; giữ `operations.approver_id` = `NV-HANH` | vận hành | GIẢM: hàng chờ từ 52 xuống 11 ca/ngày và 0 ca ùn, nhưng vẫn phụ thuộc việc người thật đọc ghi chú và chấp nhận kiểm mẫu | `R-S8-after-20261118-163418-3a3ab4`, `R-S8-after-20261118-163429-b90fdb` |
+| [2], [3] (phần tiền) | Tổng hoàn tự động và chi phí mỗi ticket có thể vượt ngân sách khi trợ lý hoàn sai hàng loạt hoặc khi mọi ca phải kiểm tay | Mục `business` **giữ nguyên** sau khi cân nhắc: `daily_refund_cap_vnd` 1.800.000đ, `cost_budget_per_ticket_vnd` 1.500đ, `pilot_scope` `all`, `roi_min` 0,4. Lý do: sửa [1] [2] [3] xong thì mốc after trên thẻ còn 282.000đ hoàn tự động/ngày (16% trần), 769đ tiền LLM ticket đắt nhất (51% ngân sách), 2.952đ/ticket, ROI 2,39, 0 kho đắt hơn làm tay. Cắt kho hay hạ phần trăm chỉ giảm độ phủ (đang 1,0) mà không bớt tác hại nào còn lại | giới hạn thiệt hại | NGĂN tổng hoàn tự động một ngày vượt ngân sách Finance 2.000.000đ, vì khoản làm vượt 1.800.000đ không được ghi mà chuyển người. Không ngăn được vượt trần **từng khách**; phần đó do nhánh [2] trong code chặn | `R-S8-after-20261118-163536-66297e` |
 
 ---
 
@@ -403,7 +404,7 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | 6 | Xong | `R-S8-after-20261118-163536-66297e`: 2.952đ/ticket, ROI 2,39; bộ nền `R-base-after-20261118-163533-66297e`: 4.456đ/ticket, ROI 1,24 | Dương Ngọc Tuyên |
 | 7 | Xong | `operations.decision_note` = `true`, `review_sampling_pct` = 10; Runbook 4–5; `manual_recheck_rate`, `queue_stuck_rate` | Dương Minh Tân |
 | 8 | Xong | Phiếu C mục C3.4; người đứng tên `NV-HANH` giữ quyền duyệt khoản trên hạn mức; 0 lỗi oan, 0 lộ dữ liệu ở mốc after | Dương Minh Tân |
-| 9 | Chưa | Phiếu C mục C12 đã có đề xuất v2, chờ cả bàn và Dương Ngọc Tuyên xác nhận | Dương Ngọc Tuyên |
+| 9 | Xong | Tiêu chí ký `0ae93d0` trước lần chạy đầu (ký 15:39:08, chạy đầu 15:39:28); v1 Tiếp tục (Phiếu B mục B8) và v2 Tiếp tục (Phiếu C mục C12) đều khớp dòng "Tiếp tục" của `decision_rule`; report `R-S8-grade-20261118-163533-66297e`: "Mọi ngưỡng đã ký đều đạt" | Dương Ngọc Tuyên |
 
 ### Runbook 4 · Sau sự cố trên thẻ (vòng 2)
 
@@ -449,7 +450,7 @@ Cột v1 nằm ở Phiếu B mục B8; không sửa cột đó.
 | Nếu Cải tiến thêm: giả thuyết cụ thể (nhánh nào của fault tree) + hạn | (không áp dụng) |
 | Nếu Dừng: bài học ghi lại | (không áp dụng) |
 | Ngày quyết định lại (trừ khi Dừng) | **2026-11-30**, trước khi `REFUND-v4` có hiệu lực ngày 2026-12-01; xem lại sớm hơn nếu `manual_recheck_rate` > 20% hoặc có ca ùn. |
-| PIC ký | Dương Ngọc Tuyên (chờ cả bàn xác nhận trước khi nộp) · PIC vận hành `NV-TUNG` |
+| PIC ký | Dương Ngọc Tuyên (Sản phẩm và kinh doanh, đã soát từng số với `R-S8-grade-20261118-163533-66297e` và xác nhận v2) · PIC vận hành `NV-TUNG` |
 
 **Chỉ ở v2**
 - Quyết định đổi hay giữ so với v1? Vì con số nào: Giữ **Tiếp tục**. v1 mới có bộ nền; v2 có thêm thẻ S8 với `pass_rate` 1,0, 35/35 ca tấn công, 0 ca ùn, 2.952đ/ticket và ROI 2,39. Nếu còn ở mốc prepared thì quyết định này không đứng được vì 36 ca ùn và ROI −0,11.

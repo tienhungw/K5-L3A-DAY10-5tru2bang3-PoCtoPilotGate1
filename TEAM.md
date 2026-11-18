@@ -74,7 +74,10 @@ Sản phẩm và kinh doanh, người ký Bản tiêu chí. Câu 1.1, 1.6, 2.3, 
 - Câu 2.3 (Phiếu B mục B3): bản đồ dữ liệu và ví dụ drift REFUND-v3 → REFUND-v4 ngày 2026-12-01 (cờ `index_active` không tự đổi theo ngày hiệu lực).
 - Câu 2.9 (Phiếu B mục B7.4): mục `business` của `config/operating_gates.json`: trần hoàn ngày 1.800.000đ, ngân sách 1.500đ/ticket, phạm vi `all`, ROI 0,4, mỗi số một câu lý do.
 - Quyết định Gate 1 v1 (Phiếu B mục B8): **Tiếp tục**, khớp dòng "Tiếp tục" của `decision_rule` trên bộ nền (5/5 ngưỡng bắt buộc, `business_ops` đạt, không vượt trần); ghi rõ vế "gói sự cố" để v2 đo lại.
-- Dùng AI: Claude Code hỗ trợ đọc đề và code của lab, tính tổng tiền hoàn từ nhãn bộ nền, soạn nháp các câu trên và cột v1 ở B8. Mọi ngưỡng và con số do tôi duyệt và chịu trách nhiệm giải thích.
+- Câu 2.5 (Phiếu B mục B6): hai lý do pre-mortem ở lăng kính kinh doanh (điểm hoà vốn escalation ≈ 0,51; hoàn trùng khi LLM lỗi 429 ở bước xác nhận).
+- Câu 2.8 (Phiếu B mục B7.3): người không viết code cùng làm; tự tính quyền lợi đúng của hai ticket hiểm từ REFUND-v3 và tracking, đối chiếu với kết quả cổng, nêu thiệt hại tránh được (30.000đ và 320.000đ).
+- Vòng 2, thẻ S8: soát và xác nhận câu 3.2 (Phiếu C mục C5) và quyết định v2 **Tiếp tục** (Phiếu C mục C12) do Hưng soạn nháp, đối chiếu từng số với report; thêm dòng `business` ở C7 (giữ nguyên trần, ngân sách, phạm vi, ROI kèm lý do có số); chuyển checklist nhóm 9 sang "Xong" ở C11.
+- Dùng AI: Claude Code hỗ trợ đọc đề và code của lab, tính tổng tiền hoàn từ nhãn bộ nền, soạn nháp các câu trên, cột v1 ở B8 và soát số ở Phiếu C. Mọi ngưỡng và con số do tôi duyệt và chịu trách nhiệm giải thích.
 
 ### Bằng chứng
 
@@ -82,12 +85,13 @@ Sản phẩm và kinh doanh, người ký Bản tiêu chí. Câu 1.1, 1.6, 2.3, 
 - Commit `16c66a5` (nhánh `tuyen`): bản cuối tiêu chí, sửa `decision_rule` (Thu hẹp thêm `escalation_rate` và "report còn dòng vượt trần"; Dừng: "cao hơn mức làm tay 10.000 đ").
 - Commit `0ae93d0` `Sign acceptance criteria`: Bản tiêu chí của tôi được ký nguyên văn (Hưng chạy lệnh ký trên máy đo).
 - Quyết định v1 (Phiếu B mục B8) dựa trên `R-base-before-20261118-153928-7ff038` (base) và `R-base-prepared-20261118-154340-8f4f45` (prepared, bản chốt `49938c75`).
-- Quyết định v2 (Phiếu C mục C12) và câu 3.2: bổ sung sau khi nhận thẻ sự cố.
+- Commit `24a0d66`: quyết định v1 (Phiếu B mục B8). Commit `0341b0c`: B6 và B7.3. Cả hai lên `main` qua `fcf4353`.
+- Quyết định v2 (Phiếu C mục C12) dựa trên `R-S8-grade-20261118-163533-66297e`: base `R-S8-before-20261118-163535-66297e`, prepared `R-S8-prepared-20261118-163536-66297e`, after `R-S8-after-20261118-163536-66297e`; bộ nền `R-base-after-20261118-163533-66297e`.
 
 ### Exit ticket
 
 - Học được: ngưỡng phải viết và ký trước khi xem số, và mỗi ngưỡng cần một hành động "thì chúng tôi sẽ …"; `decision_rule` phải phủ hết mọi trường hợp report có thể ra, nếu không sẽ có kết quả không khớp dòng nào.
-- Còn chưa chắc: ngưỡng chi phí 7.000đ/ticket và ROI 0,4 mới ước tính tay từ `ops_facts` (khoảng 4.700đ/ticket); chưa biết số base thật có sát không.
+- Còn chưa chắc: số đo thật (4.203đ/ticket ở base, 2.952đ/ticket trên thẻ S8) sát ước tính tay của tôi (khoảng 4.700đ), nhưng đều dựa trên giả định một người duyệt 6 ca/giờ và kiểm lại có ghi chú chỉ tốn 0,4 ca. Ngoài thực tế, nếu nhân viên vẫn kiểm tay thì điểm hoà vốn 0,51 có thể tới sớm hơn nhiều.
 
 ## DuongMinhTan-2A202603464
 
