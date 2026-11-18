@@ -117,4 +117,5 @@ Vận hành và pháp lý. Câu 1.2, 1.4, 2.4, 2.10, 3.1 (phần riêng theo th�
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- Một điều học được: nhiều cổng không cần viết code, chỉ cần một con số và một người có tên chịu trách nhiệm. Lần chạy chỉ bật config (`R-base-after-20261118-154122-7ff038`) cho thấy config đủ để chặn dữ liệu cá nhân gửi sang hãng mà không làm hỏng ca nào, nhưng không sửa được `T-002@55`; lỗi đó cần cổng code. Các con số trong runbook cũng phải khớp tiêu chí đã ký, nếu không runbook nói một đằng, tiêu chí chấm một nẻo (trần 2.000.000đ so với 1.800.000đ đã ký).
+- Một điều còn chưa chắc: hàng chờ người duyệt có thật sự ổn ngoài đời không. Trên dữ liệu mock, 1 người trực không có ca nào bị ùn, nhưng mô phỏng giả định người duyệt luôn ngồi sẵn và mỗi ca chỉ mất 10 phút. Em chưa biết giờ cao điểm thật có bao nhiêu ca mỗi giờ, và nhân viên sau kiểm toán (thẻ S8) có còn kiểm tay lâu hơn mô phỏng không. Cần đo lại trong pilot thật.
