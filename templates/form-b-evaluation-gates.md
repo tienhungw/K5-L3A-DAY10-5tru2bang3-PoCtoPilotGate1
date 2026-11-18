@@ -284,8 +284,8 @@ python3 -m unittest discover -s tests
 Bàn đang chỉnh cổng tới khi 22 ticket bộ nền xanh hết. Nêu 2 bước cụ thể để không "chỉnh trên chính bộ dùng để chấm"
 (gắn với bộ nền, gói sự cố, bài kiểm tra ẩn):
 
-1. …
-2. …
+1. **Không để cổng nhìn đáp án hoặc nhận ra bộ nền.** Agent đưa nguyên dòng ticket vào `ctx.ticket` (`lab10/agent.py`, dòng 40), nên cổng đọc được cả `label`, `kind`, `scenario`, là những trường production không có. Cổng của bàn chỉ dùng dữ liệu của yêu cầu và nguồn sự thật qua `ctx.tools`, `lab10.helpers`; không rẽ nhánh theo mã ticket, mã đơn, mã khách hay câu chữ của bộ nền. Trước `lab10.checkpoint`, chạy lệnh sau và kết quả phải trống: `git grep -nE "label|kind|scenario|T-[0-9]{3}|O-[0-9]{4}|C-[0-9]{2}|S[1-8]-[0-9]{2}" -- lab10/guards.py`.
+2. **Giữ phần dữ liệu chưa dùng để chỉnh cổng.** Bộ nền chỉ dùng để phát hiện ca mới hỏng; 22 ticket xanh không chứng minh cổng đúng ở nơi khác. Cổng vòng 1 được chốt bằng `lab10.checkpoint` trước khi nhận thẻ, nên lần đầu chạy `lab10.grade --incident Sx` khi chưa sửa là số đo trên gói sự cố mà cổng chưa từng được chỉnh theo. Từ lúc sửa ở vòng 2, gói sự cố nhìn thấy đã thành dữ liệu để chỉnh, nên bài kiểm tra ẩn mới là phép đo độc lập; bàn không suy ra kết quả ẩn từ việc gói nhìn thấy đã xanh.
 
 ### B7.3 · Câu 2.8 · Một behavioral test
 

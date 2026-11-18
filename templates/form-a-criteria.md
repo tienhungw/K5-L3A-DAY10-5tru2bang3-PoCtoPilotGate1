@@ -48,12 +48,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
+| **Bước / hành vi được đo** | Bước ghi lỗi hãng: lệnh `file_carrier_fault` chạy sau khi `issue_refund` thành công. Chọn bước này vì eval card Lab 9 đã có thước đo cấp bước cho độ trễ (`db_fact_kept`) và số tiền đề xuất (`proposal_correct`), nhưng chưa có cho bước gây hại trực tiếp tới hãng vận chuyển. | |
+| **Thước đo** (một câu, có đơn vị) | Độ chính xác ghi lỗi hãng: phần trăm dòng lỗi trợ lý đã ghi đúng cả hãng và kiện so với nhãn (đơn vị: % dòng lỗi đã ghi). | |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Dòng đã ghi: trường `fault_rows` trong `runs/<mã lần chạy>/traces/<ticket>@<seed>.json`, bộ nền 22 ticket × 5 seed = 110 lần chạy. Nhãn: `label.faults` trong `data/tickets.jsonl`, mỗi phần tử là cặp `[carrier_id, parcel_id]`; 11 ticket có nhãn lỗi hãng, tương ứng 55 dòng đúng kỳ vọng trên 5 seed. Nhãn hiện do người soạn lab gán; khi thêm ticket mới, chị Oanh (kế toán đối soát) gán nhãn và đối chiếu với `parcels[].delay_cause`. | |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Với mỗi lần chạy, đổi từng dòng `fault_rows` thành cặp `[carrier_id, parcel_id]`. Một dòng là đúng khi cặp đó còn trong `label.faults` của ticket; mỗi phần tử nhãn chỉ được khớp một lần, nên ghi trùng tính là sai. Độ chính xác = tổng dòng đúng ÷ tổng dòng đã ghi × 100, gộp cả 110 lần chạy. Lần chạy không ghi lỗi không vào mẫu số. Mẫu số bằng 0 thì ghi "không xác định", không ghi 100%. Thiếu file trace của lần chạy nào thì báo thiếu và chạy lại, không bỏ qua. Báo kèm số dòng nhãn bị bỏ sót và kết quả riêng của đơn nhiều kiện. | |
 | **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Không thấy số ngày trễ bị ghi sai khi hãng và kiện vẫn đúng. Không thấy lỗi bị bỏ sót nếu chỉ đọc tỉ lệ này. Không thấy trường hợp chính tracking ghi sai nguyên nhân. Bộ nền chỉ có một ticket thuộc đơn nhiều kiện (`T-013`, đơn `O-1013`), nên chưa đo tốt việc ghi nhầm kiện. | |
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
