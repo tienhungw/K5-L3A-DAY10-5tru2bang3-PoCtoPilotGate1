@@ -6,11 +6,11 @@
     "DuongMinhTan-2A202603464"
   ],
   "incident": "S8",
-  "decision_v1": "",
-  "decision_v2": "",
+  "decision_v1": "Tiếp tục",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Khi mỗi quyết định có ghi chú, mã phê duyệt được kiểm và kiểm mẫu đạt 10%, trưởng ca và nhân viên sẽ thật sự thôi kiểm tay; ngoài thực tế sau một đợt kiểm toán họ có thể vẫn kiểm tay lâu hơn mô phỏng.",
+    "reduce_or_prevent": "Cổng code NGĂN ghi sổ bằng mã phê duyệt không hợp lệ và hoàn tự động vượt 300.000đ/khách/ngày vì chạy trước lệnh ghi; phần lòng tin chỉ GIẢM rủi ro vì ghi chú và kiểm mẫu 10% không bảo đảm người duyệt đọc kỹ, và cổng vẫn phụ thuộc bảng approvals đúng.",
+    "measure_in_pilot": "Cần đo tỉ lệ nhân viên còn kiểm tay (manual_recheck_rate), thời gian thật để đọc một ghi chú so với giả định 0,4 ca, độ trễ cập nhật thu hồi trong approvals và số ca cần duyệt mỗi giờ."
   }
 }

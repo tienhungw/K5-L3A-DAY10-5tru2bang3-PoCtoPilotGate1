@@ -39,7 +39,11 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 - Câu 2.7: hai bước tránh rò rỉ dữ liệu (Phiếu B mục B7.2).
 - Câu 2.8: một tính chất và hai ticket hiểm (Phiếu B mục B7.3).
 - Chốt cổng vòng 1, đo mốc `prepared`, thêm `claim_override_rate` và `fault_tracking_mismatch_rate` trong `lab10/monitors.py`.
-- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo, thao tác Git, chạy lệnh đo, viết và kiểm thử cổng, chỉ số theo dõi, soạn các câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8.
+- Câu 2.5: hai dòng pre-mortem ở lăng kính kỹ thuật (Phiếu B mục B6).
+- Thẻ S8: nhận thẻ, đo mốc `prepared`, dò trace; thêm lý do bác phê duyệt và kiểm `customer_id` trong `lab10/guards.py`; thêm chỉ số theo dõi cho phê duyệt, trần theo khách, kiểm tay và hàng chờ trong `lab10/monitors.py`.
+- Thẻ S8: bật `operations.decision_note` và đặt `operations.review_sampling_pct` = 10 trong `config/operating_gates.json`.
+- Phiếu C mục C0–C12 và `submission/submission.json` được soạn cho cả bàn theo yêu cầu của trưởng nhóm, gồm cả phần vốn phân công cho Tuyên và Tân; hai bạn cần đọc và xác nhận phần của mình.
+- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo, thao tác Git, chạy lệnh đo, viết và kiểm thử cổng, chỉ số theo dõi, soạn các câu 1.3, 2.1, 2.2, 2.5, 2.6, 2.7, 2.8 và Phiếu C.
 
 ### Bằng chứng
 
@@ -48,7 +52,9 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 - Commit `0ae93d0`: ký tiêu chí.
 - Commit `8431651`: chốt cổng vòng 1, hash `49938c75`.
 - Commit `6f75de2`: Phiếu A mục A5, Phiếu B mục B0–B2, B7.1, B7.3, chỉ số theo dõi.
-- Mã lần chạy: `R-base-before-20261118-153928-7ff038`, `R-base-after-20261118-154122-7ff038`, `R-base-after-20261118-154124-8f4f45`, `R-base-prepared-20261118-154340-8f4f45`.
+- Commit `6b8a022`: hai dòng pre-mortem, trước khi nhận thẻ. Commit `40379f5`: nhận thẻ S8. Commit `38d9759`: phần sửa vòng 2.
+- Mã lần chạy vòng 1: `R-base-before-20261118-153928-7ff038`, `R-base-after-20261118-154122-7ff038`, `R-base-after-20261118-154124-8f4f45`, `R-base-prepared-20261118-154340-8f4f45`.
+- Mã lần chạy vòng 2: `R-S8-grade-20261118-163159-cec01b` (trước khi sửa), `R-S8-grade-20261118-163533-66297e` (sau khi sửa).
 
 ### Exit ticket
 
