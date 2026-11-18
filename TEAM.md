@@ -43,7 +43,7 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 - Thẻ S8: nhận thẻ, đo mốc `prepared`, dò trace; thêm lý do bác phê duyệt và kiểm `customer_id` trong `lab10/guards.py`; thêm chỉ số theo dõi cho phê duyệt, trần theo khách, kiểm tay và hàng chờ trong `lab10/monitors.py`.
 - Thẻ S8: bật `operations.decision_note` và đặt `operations.review_sampling_pct` = 10 trong `config/operating_gates.json`.
 - Phiếu C mục C0–C12 và `submission/submission.json` được soạn cho cả bàn theo yêu cầu của trưởng nhóm, gồm cả phần vốn phân công cho Tuyên và Tân; hai bạn cần đọc và xác nhận phần của mình.
-- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo, thao tác Git, chạy lệnh đo, viết và kiểm thử cổng, chỉ số theo dõi, soạn các câu 1.3, 2.1, 2.2, 2.5, 2.6, 2.7, 2.8 và Phiếu C.
+- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo, thao tác Git, chạy lệnh đo, viết và kiểm thử cổng, chỉ số theo dõi, soạn các câu 1.3, 2.1, 2.2, 2.5, 2.6, 2.7, 2.8, Phiếu C và exit ticket của tôi.
 
 ### Bằng chứng
 
@@ -54,11 +54,13 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 - Commit `6f75de2`: Phiếu A mục A5, Phiếu B mục B0–B2, B7.1, B7.3, chỉ số theo dõi.
 - Commit `6b8a022`: hai dòng pre-mortem, trước khi nhận thẻ. Commit `40379f5`: nhận thẻ S8. Commit `38d9759`: phần sửa vòng 2.
 - Mã lần chạy vòng 1: `R-base-before-20261118-153928-7ff038`, `R-base-after-20261118-154122-7ff038`, `R-base-after-20261118-154124-8f4f45`, `R-base-prepared-20261118-154340-8f4f45`.
+- Commit `8dde11b`: Phiếu C và bài nộp; tôi xác nhận chốt quyết định v2 với tư cách trưởng nhóm.
 - Mã lần chạy vòng 2: `R-S8-grade-20261118-163159-cec01b` (trước khi sửa), `R-S8-grade-20261118-163533-66297e` (sau khi sửa).
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- Học được: cổng dựa trên nguồn sự thật chặn được lỗi về tiền và phê duyệt ngay cả trước khi biết sự cố, nhưng không tự sửa được lòng tin. Ở thẻ S8, mốc `prepared` đã đúng 35/35 ca tấn công mà vẫn còn 36 ca ùn, vì nhân viên kiểm tay 100%; phải đổi quy trình bằng ghi chú quyết định và kiểm mẫu 10% thì số vận hành mới đạt.
+- Còn chưa chắc: người duyệt thật có đọc ghi chú và chịu chuyển sang kiểm mẫu như mô phỏng không, và các cổng có giữ được kết quả trên bài kiểm tra ẩn không, vì hiện mới đo trên bộ nền và gói sự cố nhìn thấy.
 
 ## DuongNgocTuyen-2A202603511
 
@@ -82,7 +84,7 @@ Sản phẩm và kinh doanh, người ký Bản tiêu chí. Câu 1.1, 1.6, 2.3, 
 - Commit `16c66a5` (nhánh `tuyen`): bản cuối tiêu chí, sửa `decision_rule` (Thu hẹp thêm `escalation_rate` và "report còn dòng vượt trần"; Dừng: "cao hơn mức làm tay 10.000 đ").
 - Commit `0ae93d0` `Sign acceptance criteria`: Bản tiêu chí của tôi được ký nguyên văn (Hưng chạy lệnh ký trên máy đo).
 - Quyết định v1 (Phiếu B mục B8) dựa trên `R-base-before-20261118-153928-7ff038` (base) và `R-base-prepared-20261118-154340-8f4f45` (prepared, bản chốt `49938c75`).
-- Quyết định v2 (Phiếu C mục C12) và câu 3.2: bổ sung sau khi nhận thẻ sự cố.
+- Câu 3.2 (Phiếu C mục C5) và quyết định v2 (mục C12): bản hiện tại trong commit `8dde11b` do Nguyễn Tiến Hưng nhờ Claude Code soạn; chờ Tuyên đọc và xác nhận.
 
 ### Exit ticket
 

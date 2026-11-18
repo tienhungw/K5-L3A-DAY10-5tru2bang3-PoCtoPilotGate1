@@ -403,7 +403,7 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | 6 | Xong | `R-S8-after-20261118-163536-66297e`: 2.952đ/ticket, ROI 2,39; bộ nền `R-base-after-20261118-163533-66297e`: 4.456đ/ticket, ROI 1,24 | Dương Ngọc Tuyên |
 | 7 | Xong | `operations.decision_note` = `true`, `review_sampling_pct` = 10; Runbook 4–5; `manual_recheck_rate`, `queue_stuck_rate` | Dương Minh Tân |
 | 8 | Xong | Phiếu C mục C3.4; người đứng tên `NV-HANH` giữ quyền duyệt khoản trên hạn mức; 0 lỗi oan, 0 lộ dữ liệu ở mốc after | Dương Minh Tân |
-| 9 | Chưa | Phiếu C mục C12 đã có đề xuất v2, chờ cả bàn và Dương Ngọc Tuyên xác nhận | Dương Ngọc Tuyên |
+| 9 | Xong | Commit ký `0ae93d0`, bản chốt `49938c75`, Phiếu B mục B8, Phiếu C mục C12: v2 Tiếp tục khớp `decision_rule`; trưởng nhóm Nguyễn Tiến Hưng xác nhận | Nguyễn Tiến Hưng |
 
 ### Runbook 4 · Sau sự cố trên thẻ (vòng 2)
 
@@ -449,7 +449,7 @@ Cột v1 nằm ở Phiếu B mục B8; không sửa cột đó.
 | Nếu Cải tiến thêm: giả thuyết cụ thể (nhánh nào của fault tree) + hạn | (không áp dụng) |
 | Nếu Dừng: bài học ghi lại | (không áp dụng) |
 | Ngày quyết định lại (trừ khi Dừng) | **2026-11-30**, trước khi `REFUND-v4` có hiệu lực ngày 2026-12-01; xem lại sớm hơn nếu `manual_recheck_rate` > 20% hoặc có ca ùn. |
-| PIC ký | Dương Ngọc Tuyên (chờ cả bàn xác nhận trước khi nộp) · PIC vận hành `NV-TUNG` |
+| PIC ký | Nguyễn Tiến Hưng (trưởng nhóm, xác nhận chốt v2) · PIC vận hành `NV-TUNG` |
 
 **Chỉ ở v2**
 - Quyết định đổi hay giữ so với v1? Vì con số nào: Giữ **Tiếp tục**. v1 mới có bộ nền; v2 có thêm thẻ S8 với `pass_rate` 1,0, 35/35 ca tấn công, 0 ca ùn, 2.952đ/ticket và ROI 2,39. Nếu còn ở mốc prepared thì quyết định này không đứng được vì 36 ca ùn và ROI −0,11.
