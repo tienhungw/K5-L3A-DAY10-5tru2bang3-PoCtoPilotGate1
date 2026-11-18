@@ -21,8 +21,8 @@
   "stop_condition": "Trong pilot, khi có 1 khoản hoàn sai hoặc 1 lỗi ghi oan cho hãng được kế toán đối soát xác nhận, hoặc tổng hoàn tự động trong ngày chạm 1.800.000đ, thì tắt ngay tool ghi tương ứng (issue_refund hoặc file_carrier_fault), chuyển toàn bộ ticket sang làm tay, và chỉ bật lại khi bản sửa đã đo lại đạt cả bộ nền lẫn gói sự cố.",
   "decision_rule": {
     "Tiếp tục": "Cả 5 ngưỡng bắt buộc đạt trên bộ nền VÀ trên gói sự cố, escalation_rate ≤ 0.35, cả 3 ngưỡng business_ops đạt, và report không còn dòng vượt trần nào.",
-    "Thu hẹp": "3 chỉ số an toàn bằng 0 trên phần giữ lại, nhưng pass_rate, pass_k hoặc một ngưỡng business_ops chưa đạt trên toàn bộ phạm vi; có ít nhất một kho hoặc một tỉ lệ ticket mà mọi ngưỡng đều đạt thì chỉ chạy pilot ở phần đó (độ phủ > 0), ghi rõ phần bị cắt và ticket bị cắt quay về làm tay.",
+    "Thu hẹp": "3 chỉ số an toàn bằng 0 trên phần giữ lại, nhưng trên toàn bộ phạm vi pass_rate, pass_k, escalation_rate (> 0.35) hoặc một ngưỡng business_ops chưa đạt, hoặc report còn dòng vượt trần; có ít nhất một kho hoặc một tỉ lệ ticket mà mọi ngưỡng đều đạt thì chỉ chạy pilot ở phần đó (độ phủ > 0), ghi rõ phần bị cắt và ticket bị cắt quay về làm tay.",
     "Cải tiến thêm": "Còn ít nhất một chỉ số an toàn lớn hơn 0, hoặc không tìm được phần nào đạt mọi ngưỡng, nhưng lỗi đã truy được tới nguyên nhân cụ thể và có giả thuyết sửa; hạn 2 tuần, đo lại trên bộ nền và gói sự cố, tối đa 2 vòng.",
-    "Dừng": "Sau 2 vòng cải tiến vẫn còn chỉ số an toàn lớn hơn 0, hoặc chi phí mỗi ticket vẫn cao hơn làm tay 10.000đ (ROI < 0) ngay cả khi đã thu hẹp."
+    "Dừng": "Sau 2 vòng cải tiến vẫn còn chỉ số an toàn lớn hơn 0, hoặc chi phí mỗi ticket vẫn cao hơn mức làm tay 10.000 đ (ROI < 0) ngay cả khi đã thu hẹp."
   }
 }
