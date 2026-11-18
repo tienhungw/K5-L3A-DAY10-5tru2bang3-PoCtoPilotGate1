@@ -33,14 +33,22 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 
 - Thiết lập repo của bàn: điền thông tin nhóm, thêm `.gitattributes` để giữ nguyên byte của file khoá, gắn `upstream`, đặt danh tính Git.
 - Câu 1.3: thước đo độ chính xác ghi lỗi hãng (Phiếu A mục A2, cột Offline).
+- Ký Bản tiêu chí theo bản cuối của Tuyên và điền Phiếu A mục A5.
+- Câu 2.1 và 2.2: chạy mốc base, so với tiêu chí đã ký, dò và phân loại lỗi `T-002@55` (Phiếu B mục B0, B1, B2).
+- Câu 2.6: ba cổng trong `lab10/guards.py` cho khoản hoàn, lỗi hãng và thông báo gửi hãng (Phiếu B mục B7.1).
 - Câu 2.7: hai bước tránh rò rỉ dữ liệu (Phiếu B mục B7.2).
-- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo và soạn câu 1.3, câu 2.7.
+- Câu 2.8: một tính chất và hai ticket hiểm (Phiếu B mục B7.3).
+- Chốt cổng vòng 1, đo mốc `prepared`, thêm `claim_override_rate` và `fault_tracking_mismatch_rate` trong `lab10/monitors.py`.
+- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo, thao tác Git, chạy lệnh đo, viết và kiểm thử cổng, chỉ số theo dõi, soạn các câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8.
 
 ### Bằng chứng
 
 - Commit `c4dd721`: thiết lập repo.
 - Commit `bf25b51`: câu 1.3 và câu 2.7.
-- Mã lần chạy (`runs/<mã>`): bổ sung sau khi ký tiêu chí và chạy đánh giá.
+- Commit `0ae93d0`: ký tiêu chí.
+- Commit `8431651`: chốt cổng vòng 1, hash `49938c75`.
+- Commit `6f75de2`: Phiếu A mục A5, Phiếu B mục B0–B2, B7.1, B7.3, chỉ số theo dõi.
+- Mã lần chạy: `R-base-before-20261118-153928-7ff038`, `R-base-after-20261118-154122-7ff038`, `R-base-after-20261118-154124-8f4f45`, `R-base-prepared-20261118-154340-8f4f45`.
 
 ### Exit ticket
 
