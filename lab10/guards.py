@@ -52,10 +52,33 @@ def _valid_approval(ctx, action, amount):
     approver = (ctx.gates or {}).get("operations", {}).get("approver_id")
     for item in ctx.tools.lookup_approvals(ticket_id=action.get("ticket_id")):
         if (item.get("order_id") == action.get("order_id") and item.get("status") == "valid"
+                and item.get("customer_id") == ctx.ticket.get("customer_id")
                 and item.get("expires_at", "") >= ctx.as_of and item.get("max_vnd", 0) >= amount
                 and (not approver or item.get("approver_id") == approver)):
             return item
     return None
+
+
+def _approval_problems(ctx, action, amount):
+    """Mã phê duyệt agent đưa ra sai ở điều kiện nào, để người duyệt đọc được lý do."""
+    approval_id = action.get("approval_id")
+    if not approval_id:
+        return ["chưa có mã phê duyệt"]
+    rows = ctx.tools.lookup_approvals(approval_id=approval_id)
+    if not rows:
+        return [f"mã {approval_id} không tồn tại"]
+    item = rows[0]
+    approver = (ctx.gates or {}).get("operations", {}).get("approver_id")
+    checks = [
+        (item.get("ticket_id") == action.get("ticket_id"), f"mã {approval_id} cấp cho ticket khác"),
+        (item.get("order_id") == action.get("order_id"), f"mã {approval_id} cấp cho đơn khác"),
+        (item.get("customer_id") == ctx.ticket.get("customer_id"), f"mã {approval_id} cấp cho khách khác"),
+        (item.get("status") == "valid", f"mã {approval_id} có trạng thái {item.get('status')}"),
+        (item.get("expires_at", "") >= ctx.as_of, f"mã {approval_id} hết hạn {item.get('expires_at')}"),
+        (item.get("max_vnd", 0) >= amount, f"mã {approval_id} chỉ duyệt tới {item.get('max_vnd')}đ, khoản chi {amount}đ"),
+        (not approver or item.get("approver_id") == approver, f"mã {approval_id} không do người có thẩm quyền ký"),
+    ]
+    return [text for passed, text in checks if not passed]
 
 
 def _refund_gate(ctx, action):
@@ -76,8 +99,10 @@ def _refund_gate(ctx, action):
     needs_approval = amount > policy["auto_limit_vnd"]
     approval = _valid_approval(ctx, action, amount) if needs_approval else None
     if needs_approval and approval is None:
-        ctx.log("refund_escalated", why="approval", amount_vnd=amount, approval_id=action.get("approval_id"))
-        return Verdict.escalate("vượt hạn mức tự động, chưa có phê duyệt hợp lệ")
+        problems = _approval_problems(ctx, action, amount)
+        ctx.log("refund_escalated", why="approval", amount_vnd=amount, approval_id=action.get("approval_id"),
+                problems=problems)
+        return Verdict.escalate("vượt hạn mức tự động, phê duyệt không hợp lệ: " + "; ".join(problems))
 
     customer_cap = limits.get("max_auto_refund_per_customer_per_day_vnd")
     if customer_cap is not None and not needs_approval:

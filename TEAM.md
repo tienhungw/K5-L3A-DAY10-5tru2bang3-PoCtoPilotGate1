@@ -5,7 +5,7 @@
 - Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): `5tru2bang3`
 - Lớp: `L3A`
 - Repo của bàn: `K5-L3A-DAY10-5tru2bang3-PoCtoPilotGate1`
-- Thẻ sự cố đã bốc (S1–S8):
+- Thẻ sự cố đã bốc (S1–S8): `S8`
 
 ## Thành viên
 
