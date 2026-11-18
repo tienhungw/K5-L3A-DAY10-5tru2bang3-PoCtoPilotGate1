@@ -1,7 +1,7 @@
 {
-  "team": "",
+  "team": "K5-L3A-DAY10-5tru2bang3-PoCtoPilotGate1",
   "version": "1.0 (nối PRD v1.1 và eval card của Lab 9)",
-  "signed_by": "",
+  "signed_by": "Dương Ngọc Tuyên (Sản phẩm và kinh doanh)",
   "gate": "Bước đánh giá 1 (kết thúc PoC)",
   "required": {
     "pass_rate_min": null,
