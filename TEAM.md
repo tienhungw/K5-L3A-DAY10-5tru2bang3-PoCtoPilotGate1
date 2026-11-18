@@ -108,7 +108,12 @@ Vận hành và pháp lý. Câu 1.2, 1.4, 2.4, 2.10, 3.1 (phần riêng theo th�
 
 - Commit `372b3f7`: câu 1.2, 1.4, 2.4, 2.10 và mục `operations`, `legal`.
 - Commit `0bc8b2e`: runbook và điều kiện dừng khớp số của Bản tiêu chí.
-- Mã lần chạy (`runs/<mã>`): bổ sung sau khi ký tiêu chí và chạy đánh giá.
+- Commit `b005d9f`: bằng chứng có mã lần chạy cho checklist 9 nhóm (Phiếu B mục B5) và chi phí khi thêm người trực giờ cao điểm (B7.6).
+- Commit `e31e3ac`: hai lý do pre-mortem lăng kính Con người và vận hành, Pháp lý (Phiếu B mục B6), cả hai thành cổng phòng ngừa.
+- Mã lần chạy `R-base-after-20261118-154122-7ff038` (bộ nền, chỉ bật config `business`, `operations`, `legal`): kết quả giống base, mục `operations` và `legal` không làm hỏng ca nào.
+- Mã lần chạy `R-base-prepared-20261118-154340-8f4f45` (bộ nền, cổng vòng 1 đã chốt `49938c75`): 0 ca bị ùn, chờ lâu nhất 0 phút, lộ dữ liệu cá nhân 0, lỗi hãng oan 0, không vượt trần.
+- Mã lần chạy `R-S8-after-20261118-163536-66297e` và tự kiểm tra `R-S8-grade-20261118-163533-66297e` (thẻ S8): lộ dữ liệu cá nhân 0, lỗi hãng oan 0, 0 ca bị ùn.
+- Dòng trong phiếu: Phiếu A mục A1 (câu 1.2), A2 (cột Telemetry production); Phiếu B mục B4, B5 (dòng 7, 8), B6 (hai dòng ghi "(Tân)"), B7.5, B7.6; Phiếu C mục C10 (hai dòng PIC Dương Minh Tân: nhân viên vẫn kiểm tay, người duyệt quá tải).
 
 ### Exit ticket
 
