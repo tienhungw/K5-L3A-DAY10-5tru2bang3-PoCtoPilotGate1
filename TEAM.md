@@ -31,11 +31,16 @@ Kỹ sư cổng, trưởng nhóm. Câu 1.3, 2.1, 2.2, 2.6, 2.7, 2.8, 3.1 (trace)
 
 ### Đóng góp cụ thể
 
-...
+- Thiết lập repo của bàn: điền thông tin nhóm, thêm `.gitattributes` để giữ nguyên byte của file khoá, gắn `upstream`, đặt danh tính Git.
+- Câu 1.3: thước đo độ chính xác ghi lỗi hãng (Phiếu A mục A2, cột Offline).
+- Câu 2.7: hai bước tránh rò rỉ dữ liệu (Phiếu B mục B7.2).
+- Dùng AI: Claude Code hỗ trợ đọc code của lab, thiết lập repo và soạn câu 1.3, câu 2.7.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `c4dd721`: thiết lập repo.
+- Commit `bf25b51`: câu 1.3 và câu 2.7.
+- Mã lần chạy (`runs/<mã>`): bổ sung sau khi ký tiêu chí và chạy đánh giá.
 
 ### Exit ticket
 
